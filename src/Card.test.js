@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import Card from './Card';
 
 describe('<Card />', () => {
@@ -15,4 +15,10 @@ describe('<Card />', () => {
         // Clean up
         ReactDOM.unmountComponentAtNode(div);
     });
+    it('renders the UI as expected', () => {
+        const tree = renderer
+          .create(<Card title="Test" content="Content" />)
+          .toJSON();
+        expect(tree).toMatchSnapshot();  
+        });
 });
